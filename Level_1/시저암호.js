@@ -1,13 +1,9 @@
 function solution(s, n) {
-    let answer = '';
-    let abc = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    for(let i = 0; i < s.length; i++) {
-        if(s[i] === ' ') {
-            answer += ' ';
-        }
-        else {
-            answer += abc[abc.indexOf(s[i]) + n];
-        }
-    }
-    return answer;
+    return s.split("").map(e => {
+        if(" " == e) return e;
+
+        return e.toUpperCase().charCodeAt(0) + n > 90 
+            ? String.fromCharCode(e.charCodeAt(0)+n-26)
+            : String.fromCharCode(e.charCodeAt(0)+n);
+    }).join("");
 }
